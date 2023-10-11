@@ -1,0 +1,21 @@
+/* Write your global styles here, in PostCSS syntax */
+@import 'normalize.css/normalize.css';
+@import '$lib/styles/fonts.postcss';
+@import '$lib/styles/basic.postcss';
+
+html {
+	position: relative;
+	font-size: 4px;
+}
+
+html[tab-active] body:after {
+	content: ' ';
+	border: 2rem solid red;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.25;
+	pointer-events: none;
+}

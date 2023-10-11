@@ -1,0 +1,16 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "json.sortOnSave.enable": false,
+    "prettier.arrowParens": "always",
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "svelte.plugin.svelte.format.config.singleQuote": true,
+    "vs-code-prettier-eslint.prettierLast": true,
+    "editor.scrollBeyondLastLine": false,
+    "editor.padding.bottom": 40,
+    "files.insertFinalNewline": true
+}
