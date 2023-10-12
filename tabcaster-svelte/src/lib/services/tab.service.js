@@ -6,6 +6,7 @@ export const tab = writable(null)
 export const visible = writable(true)
 export const active = writable(true)
 export const activeID = writable(null)
+export const interacted = writable(false)
 
 // BROADCAST CHANNEL
 export const tabChannel = new BroadcastChannel('tabcaster')
@@ -50,13 +51,38 @@ const beforeUnloadListener = () => {
   })
 }
 
+// INTERACTION LISTENER
+let hasInteracted
+
+const interactionListener = async (includeInteractionMessage = false) => {
+  if (includeInteractionMessage) {
+    updateHTMLAttr('tab-interaction-message', true)
+  }
+
+  hasInteracted = setInterval(() => {
+    let isActive = navigator.userActivation.isActive
+
+    if (isActive) {
+      interacted.set(isActive)
+
+      if (includeInteractionMessage) {
+        updateHTMLAttr('tab-interaction-message', false)
+      }
+
+      updateHTMLAttr('tab-interacted', isActive)
+      clearInterval(hasInteracted)
+    }
+  }, 250);
+}
+
 // MODULE FUNCTIONS
-export const initTab = async () => {
+export const initTabCaster = async (includeInteractionMessage) => {
   await setTabName()
   await visibilityListener()
   await focusListener()
   await setActive()
- beforeUnloadListener()
+  await interactionListener(includeInteractionMessage)
+  beforeUnloadListener()
 }
 
 // CHANNEL LISTENERS

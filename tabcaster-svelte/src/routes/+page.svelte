@@ -1,12 +1,12 @@
 <script>
   import { onMount, onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
-  import { tab, initTab, visible, tabChannel, active, activeID } from '$lib/services/tab.service.js'
+  import { tab, initTabCaster, interacted, visible, tabChannel, active, activeID } from '$lib/services/tab.service.js'
 
   let ready = false
 
   onMount(async () => {
-    await initTab()
+    await initTabCaster(true)
     ready = true
   })
 
@@ -25,6 +25,10 @@
     <div class="tab-info">
       <strong>Tab Visible:</strong>
       <span>{$visible}</span>
+    </div>
+    <div class="tab-info">
+      <strong>Interacted:</strong>
+      <span>{$interacted}</span>
     </div>
     <div class="tab-info">
       <strong>Active:</strong>

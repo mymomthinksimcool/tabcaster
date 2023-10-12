@@ -8,9 +8,30 @@ html {
 	font-size: 4px;
 }
 
-html[tab-active] body:after {
+html[tab-interaction-message] body:after {
+	position: fixed;
+	left: 50vw;
+	top: 50vh;
+	content: 'Interact with the Page';
+	text-shadow: 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+	color: #fff;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 2rem 6rem;
+	font-size: 3.5rem;
+	font-weight: 300;
+	text-align: center;
+	display: block;
+	border-radius: 2rem;
+	transform: translate(-50%, -50%);
+	transition: 0.5s opacity linear;
+	opacity: 1;
+	line-height: 1;
+	border: 0.5rem solid rgba(255, 255, 255, 0.25);
+}
+
+html[tab-interacted] body:before {
 	content: ' ';
-	border: 2rem solid red;
+	border: 2rem solid black;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -18,4 +39,9 @@ html[tab-active] body:after {
 	left: 0;
 	opacity: 0.25;
 	pointer-events: none;
+}
+
+html[tab-interacted][tab-active] body:before {
+	content: ' ';
+	border-color: red;
 }
